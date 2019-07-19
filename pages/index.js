@@ -1,5 +1,7 @@
 import 'isomorphic-fetch';
 import Link from 'next/link';
+import Header from '../src/header'
+
 export default class extends React.Component{
     static async getInitialProps(){
         let request = await fetch('https://api.audioboom.com/channels/recommended')
@@ -10,13 +12,11 @@ export default class extends React.Component{
         const { channels } = this.props
         return (
            <div>
-                <header>
-                    Este no es un podcast normal
-                </header>
+               <Header>Podcast</Header>
                 <div className='channels'>
                 {
                     channels.map(channel => (
-                        <Link href='/channel' key={channel.id} prefetch>
+                        <Link href={`/channel?id=${channel.id}`} prefetch key={channel.id}>
                             <a className='channel'>
                                 <img src={channel.urls.logo_image.original} alt={channel.title}/>
                                 <h2>{channel.title}</h2>
@@ -26,10 +26,27 @@ export default class extends React.Component{
                 }
                 </div>
                 <style jsx>{`
-                    header{
-                        color: #fff;
-                        background: #8756ca;
+                    .channels {
+                        display: grid;
                         padding: 15px;
+                        grid-gap: 15px;
+                        text-align: center;
+                        grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+                    }
+                    .channel {
+                        display: block;
+                        border-radius: 3px;
+                        box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+                        margin-bottom: 0.5rem;
+                    }
+                    .channel img{
+                        width: 100%;
+                    }
+                    h2{
+                        padding: 5px;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                        margin: 0;
                         text-align: center;
                     }
                     .channels{
