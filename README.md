@@ -1,7 +1,10 @@
 # Curso de next.js by platzi 🚀
 
 App de podcast integrada con la API de audioBoom para aprender next.js 
-![captura de la app](./.readme-statics/podcast.png)
+
+
+![captura de la app](./.readme-statics/podcast.png=250x)
+
 
 ## Scripts
 
